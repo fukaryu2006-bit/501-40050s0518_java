@@ -1,0 +1,37 @@
+/**
+プログラミング基礎Java
+EX01 JAVA [完全]入門
+Chapter02 問題11 (改)
+
+次のプログラムと発生エラーを見て、プログラムの誤りを修正してください。
+public class SO202_EX01_02_1 {
+  public static void main(String[] args) {
+    System.out.println("Hello");
+  }
+}
+
+発生エラー：
+SO202_EX01_02_11.java:7: error: class SO202_EX01_02_1 is public, should be declared
+in a file named SO202_EX01_02_1.java
+public class SO202_EX01_02_1 {
+       ^
+1 error
+
+コンパイル方法
+================
+>>> java -jar checkstyle-10.3.4-all.jar -c checkstyle.xml SO202_EX01_02_11.java
+Starting audit...
+Audit done.
+>>> javac SO202_EX01_02_11.java
+================
+
+実行例
+================
+>>> java SO202_EX01_02_11
+Hello
+================
+
+*/
+
+
+// ここより下に解答を記載する。

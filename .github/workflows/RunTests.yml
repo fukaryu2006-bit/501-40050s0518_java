@@ -1,0 +1,39 @@
+name: 自動チェック（静的解析ツール＋実行結果）
+on:
+  push:
+  # pull_request:
+    paths:
+      - "**/SO*.c"
+      - "**/SO*.java"
+      - "**/SO*.py"
+jobs:
+  build:
+    name: テスト実行
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # 全てのコミット履歴をフェッチ
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: Run tests
+      run: |
+        git fetch origin main
+        # git diffで差分ファイルを取得
+        if [ "${GITHUB_REF#refs/heads/}" == "main" ]; then
+          files=(`git diff --name-only origin/main~1 origin/main | xargs`)
+        else
+          echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          files=(`git diff --name-only origin/main $BRANCH_NAME | xargs`)
+        fi
+        for file in "${files[@]}"; do
+          filename="${file##*/}"
+          basename="${filename%.*}"
+          # SOで始まるファイルのみ実行する
+          if [[ $basename == *"SO"* ]]; then
+            echo "python UnitTest.py --terminate --keyword ${basename}"
+            python UnitTest.py --terminate --keyword ${basename}
+          fi
+        done
