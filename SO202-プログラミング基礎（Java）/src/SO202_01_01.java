@@ -19,9 +19,8 @@
 
 
 // ここより下に解答を記載する。
-public class sample{
-  public static void main(String[]args){
-    System.out.println("ハローワ－ルド！！");
-  }
+public class SO202_01_01 {
+    public static void main(String[] args) {
+        System.out.println("ハローワールド！！");
+    }
 }
-
