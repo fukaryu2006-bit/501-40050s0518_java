@@ -20,6 +20,8 @@
 
 // ここより下に解答を記載する。
 public class sample{
-  public statistic void main(strring[]args){
-    System.out.println("ハローワ－ルド！！")
+  public static void main(String[]args){
+    System.out.println("ハローワ－ルド！！");
+  }
+}
 
